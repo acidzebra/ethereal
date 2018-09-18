@@ -78,7 +78,7 @@ minetest.register_node("ethereal:willow_twig", {
 	walkable = ethereal.leafwalk,
 	visual_scale = 1.4,
 	waving = 1,
-	groups = {snappy = 3, leafdecay = 3, leaves = 1, flammable = 2},
+	groups = {snappy = 3, leafdecay = 3, dissolve = 1, flammable = 2},
 	drop = {
 		max_items = 1,
 		items = {

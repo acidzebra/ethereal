@@ -1,7 +1,7 @@
 
 -- clear default mapgen biomes, decorations and ores
-minetest.clear_registered_biomes()
-minetest.clear_registered_decorations()
+--minetest.clear_registered_biomes()
+--minetest.clear_registered_decorations()
 --minetest.clear_registered_ores()
 
 local path = minetest.get_modpath("ethereal")
@@ -38,47 +38,71 @@ local add_biome = function(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p)
 		depth_water_top = i,
 		node_water = j,
 		node_river_water = k,
-		y_min = l,
-		y_max = m,
+		-- y_min = l,
+		-- y_max = m,
 		heat_point = n,
 		humidity_point = o,
+		vertical_blend = 6,
+		min_pos = {x = -31000, y = l, z = -20500},
+		max_pos = {x = 31000, y = m, z = 20500},
 	})
 end
 
-add_biome("underground", nil, nil, nil, nil, nil, nil, nil, nil, nil, nil,
-	-31000, -192, 50, 50, 1)
+--add_biome("underground", nil, nil, nil, nil, nil, nil, nil, nil, nil, nil,
+--	-31000, -192, 50, 50, 1)
 
 add_biome("mountain", nil, "default:snow", 1, "default:snowblock", 2,
-	nil, nil, nil, nil, nil, 140, 31000, 50, 50, 1)
+	nil, nil, nil, nil, nil, 250, 31000, 5, 5, 1)
 
 add_biome("desert", nil, "default:desert_sand", 1, "default:desert_sand", 3,
-	"default:desert_stone", nil, nil, nil, nil, 3, 23, 35, 20, ethereal.desert)
+	"default:desert_stone", nil, nil, nil, nil, 3, 28, 75, 20, ethereal.desert)
 
 add_biome("desert_ocean", nil, "default:sand", 1, "default:sand", 2,
-	"default:desert_stone", nil, nil, nil, nil, -192, 3, 35, 20, ethereal.desert)
+	"default:desert_stone", nil, nil, nil, nil, -192, 3, 75, 20, ethereal.desert)
 
-if ethereal.glacier == 1 then
-	minetest.register_biome({
-		name = "glacier",
-		node_dust = "default:snowblock",
-		node_top = "default:snowblock",
-		depth_top = 1,
-		node_filler = "default:snowblock",
-		depth_filler = 3,
-		node_stone = "default:ice",
-		node_water_top = "default:ice",
-		depth_water_top = 10,
-		--node_water = "",
-		node_river_water = "default:ice",
-		node_riverbed = "default:gravel",
-		depth_riverbed = 2,
-		y_min = -8,
-		y_max = 31000,
-		heat_point = 0,
-		humidity_point = 50,
-	})
+minetest.register_biome({
+	name = "glacier",
+	node_dust = "default:snowblock",
+	node_top = "default:snowblock",
+	depth_top = 1,
+	node_filler = "default:snowblock",
+	depth_filler = 3,
+	node_stone = "default:ice",
+	node_water_top = "default:ice",
+	depth_water_top = 10,
+	--node_water = "",
+	node_river_water = "default:ice",
+	node_riverbed = "default:gravel",
+	depth_riverbed = 2,
+	min_pos = {x = -31000, y = -1, z = 20000},
+	max_pos = {x = 31000, y = 4, z = 31000},
+	heat_point = 0,
+	humidity_point = 50,
+	vertical_blend = 6,
+})
 
-	minetest.register_biome({
+minetest.register_biome({
+	name = "glacier2",
+	node_dust = "default:snowblock",
+	node_top = "default:snowblock",
+	depth_top = 1,
+	node_filler = "default:snowblock",
+	depth_filler = 3,
+	node_stone = "default:ice",
+	node_water_top = "default:ice",
+	depth_water_top = 10,
+	--node_water = "",
+	node_river_water = "default:ice",
+	node_riverbed = "default:gravel",
+	depth_riverbed = 2,
+	min_pos = {x = -31000, y = -1, z = -31000},
+	max_pos = {x = 31000, y = 4, z = -20000},
+	heat_point = 0,
+	humidity_point = 50,
+	vertical_blend = 6,
+})
+
+minetest.register_biome({
 		name = "glacier_ocean",
 		node_dust = "default:snowblock",
 		node_top = "default:sand",
@@ -90,137 +114,237 @@ if ethereal.glacier == 1 then
 		--depth_water_top = ,
 		--node_water = "",
 		--node_river_water = "",
-		y_min = -112,
-		y_max = -9,
+		-- y_min = -112,
+		-- y_max = -1,
+		min_pos = {x = -31000, y = -112, z = 20000},
+		max_pos = {x = 31000, y = 1, z = 31000},
 		heat_point = 0,
+		vertical_blend = 6,
 		humidity_point = 50,
-	})
-end
+})
+
+minetest.register_biome({
+		name = "glacier_ocean2",
+		node_dust = "default:snowblock",
+		node_top = "default:sand",
+		depth_top = 1,
+		node_filler = "default:sand",
+		depth_filler = 3,
+		--node_stone = "",
+		--node_water_top = "",
+		--depth_water_top = ,
+		--node_water = "",
+		--node_river_water = "",
+		-- y_min = -112,
+		-- y_max = -1,
+		min_pos = {x = -31000, y = -112, z = -31000},
+		max_pos = {x = 31000, y = 1, z = -20000},
+		heat_point = 0,
+		vertical_blend = 6,
+		humidity_point = 50,
+})
 
 add_biome("clearing", nil, "default:dirt_with_grass", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 3, 71, 45, 65, 1) -- ADDED
+	nil, nil, nil, nil, nil, 2, 91, 45, 35, 1) -- ADDED
 
 add_biome("bamboo", nil, "ethereal:bamboo_dirt", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 3, 71, 45, 75, ethereal.bamboo)
+	nil, nil, nil, nil, nil, 13, 61, 65, 75, ethereal.bamboo)
 
 add_biome("bamboo_ocean", nil, "default:sand", 1, "default:sand", 2,
-	nil, nil, nil, nil, nil, -192, 2, 45, 75, ethereal.bamboo)
+	nil, nil, nil, nil, nil, -192, 2, 55, 75, ethereal.bamboo)
 
 --add_biome("mesa", nil, "bakedclay:orange", 1, "bakedclay:orange", 15,
 add_biome("mesa", nil, "default:dirt_with_dry_grass", 1, "bakedclay:orange", 15,
-	nil, nil, nil, nil, nil, 1, 71, 25, 28, ethereal.mesa)
+	nil, nil, nil, nil, nil, 15, 45, 65, 18, ethereal.mesa)
 
 add_biome("mesa_ocean", nil, "default:sand", 1, "default:sand", 2,
-	nil, nil, nil, nil, nil, -192, 1, 25, 28, ethereal.mesa)
+	nil, nil, nil, nil, nil, -192, 3, 55, 27, ethereal.mesa)
 
 add_biome("alpine", nil, "default:dirt_with_snow", 1, "default:dirt", 2,
-	nil, nil, nil, nil, nil, 40, 140, 10, 40, ethereal.alpine)
+	nil, nil, nil, nil, nil, 140, 250, 8, 30, ethereal.alpine)
 
-add_biome("snowy", nil, "ethereal:cold_dirt", 1, "default:dirt", 2,
-	nil, nil, nil, nil, nil, 4, 40, 10, 40, ethereal.snowy)
+--add_biome("snowy", nil, "ethereal:cold_dirt", 1, "default:dirt", 2,
+--	nil, nil, nil, nil, nil, 135, 160, 10, 25, ethereal.snowy)
+minetest.register_biome({
+		name = "snowy",
+		node_dust = "default:snowblock",
+		node_top = "ethereal:cold_dirt",
+		depth_top = 1,
+		node_filler = "default:dirt",
+		depth_filler = 2,
+		vertical_blend = 6,
+		--node_stone = "",
+		--node_water_top = "",
+		--depth_water_top = ,
+		--node_water = "",
+		--node_river_water = "",
+		-- y_min = -112,
+		-- y_max = -1,
+		min_pos = {x = -31000, y = 60, z = 20000},
+		max_pos = {x = 31000, y = 135, z = 31000},
+		heat_point = 10,	
+		humidity_point = 25,
+})
 
-add_biome("frost", nil, "ethereal:crystal_dirt", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 1, 71, 10, 40, ethereal.frost)
+minetest.register_biome({
+		name = "snowy2",
+		node_dust = "default:snowblock",
+		node_top = "ethereal:cold_dirt",
+		depth_top = 1,
+		node_filler = "default:dirt",
+		depth_filler = 2,
+		vertical_blend = 6,
+		--node_stone = "",
+		--node_water_top = "",
+		--depth_water_top = ,
+		--node_water = "",
+		--node_river_water = "",
+		-- y_min = -112,
+		-- y_max = -1,
+		min_pos = {x = -31000, y = 60, z = -31000},
+		max_pos = {x = 31000, y = 135, z = -20000},
+		heat_point = 10,	
+		humidity_point = 25,
+})
+
+--add_biome("frost", nil, "ethereal:crystal_dirt", 1, "default:dirt", 3,
+--	nil, nil, nil, nil, nil, 152, 5, 10, 25, ethereal.frost)
+minetest.register_biome({
+		name = "frost",
+		node_top = "ethereal:crystal_dirt",
+		depth_top = 1,
+		node_filler = "default:dirt",
+		depth_filler = 3,
+		vertical_blend = 6,
+		--node_stone = "",
+		--node_water_top = "",
+		--depth_water_top = ,
+		--node_water = "",
+		--node_river_water = "",
+		-- y_min = -112,
+		-- y_max = -1,
+		min_pos = {x = -31000, y =152, z = 20000},
+		max_pos = {x = 31000, y = 180, z = 31000},
+		heat_point = 10,	
+		humidity_point = 25,
+})
+
+minetest.register_biome({
+		name = "frost",
+		node_top = "ethereal:crystal_dirt",
+		depth_top = 1,
+		node_filler = "default:dirt",
+		depth_filler = 3,
+		vertical_blend = 6,
+		--node_stone = "",
+		--node_water_top = "",
+		--depth_water_top = ,
+		--node_water = "",
+		--node_river_water = "",
+		-- y_min = -112,
+		-- y_max = -1,
+		min_pos = {x = -31000, y =152, z = -31000},
+		max_pos = {x = 31000, y = 180, z = 20000},
+		heat_point = 10,	
+		humidity_point = 25,
+})
 
 add_biome("frost_ocean", nil, "default:sand", 1, "default:sand", 2,
-	nil, nil, nil, nil, nil, -192, 1, 10, 40, ethereal.frost)
+	nil, nil, nil, nil, nil, -192, 2, 10, 31, ethereal.frost)
 
 add_biome("grassy", nil, "default:dirt_with_grass", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 3, 91, 13, 40, ethereal.grassy)
+	nil, nil, nil, nil, nil, 2, 101, 33, 21, ethereal.grassy)
 
 add_biome("grassy_ocean", nil, "defaut:sand", 2, "default:gravel", 1,
-	nil, nil, nil, nil, nil, -31000, 3, 13, 40, ethereal.grassy)
+	nil, nil, nil, nil, nil, -31000, 3, 13, 22, ethereal.grassy)
 
 add_biome("caves", nil, "default:desert_stone", 3, "air", 8,
-	nil, nil, nil, nil, nil, 4, 41, 15, 25, ethereal.caves)
+	nil, nil, nil, nil, nil, 1, 171, 15, 15, ethereal.caves)
 
 add_biome("grayness", nil, "ethereal:gray_dirt", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 2, 41, 15, 30, ethereal.grayness)
+	nil, nil, nil, nil, nil, 1, 3, 46, 31, ethereal.grayness)
 
 if minetest.registered_nodes["default:silver_sand"] then
 	add_biome("grayness_ocean", nil, "default:silver_sand", 2, "default:sand", 2,
-		nil, nil, nil, nil, nil, -192, 1, 15, 30, ethereal.grayness)
+		nil, nil, nil, nil, nil, -192, 2, 15, 12, ethereal.grayness)
 else
 	add_biome("grayness_ocean", nil, "default:sand", 1, "default:sand", 2,
-		nil, nil, nil, nil, nil, -192, 1, 15, 30, ethereal.grayness)
+		nil, nil, nil, nil, nil, -192, 2, 15, 11, ethereal.grayness)
 end
 
 add_biome("grassytwo", nil, "default:dirt_with_grass", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 1, 91, 15, 40, ethereal.grassytwo)
+	nil, nil, nil, nil, nil, 2, 131, 45, 25, ethereal.grassytwo)
 
 add_biome("grassytwo_ocean", nil, "default:sand", 1, "default:sand", 2,
-	nil, nil, nil, nil, nil, -192, 1, 15, 40, ethereal.grassytwo)
+	nil, nil, nil, nil, nil, -192, 2, 45, 15, ethereal.grassytwo)
 
 add_biome("prairie", nil, "ethereal:prairie_dirt", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 3, 26, 20, 40, ethereal.prairie)
+	nil, nil, nil, nil, nil, 14, 56, 63, 22, ethereal.prairie)
 
 add_biome("prairie_ocean", nil, "default:sand", 1, "default:sand", 2,
-	nil, nil, nil, nil, nil, -192, 1, 20, 40, ethereal.prairie)
+	nil, nil, nil, nil, nil, -192, 2, 58, 22, ethereal.prairie)
 
 add_biome("jumble", nil, "default:dirt_with_grass", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 1, 71, 25, 50, ethereal.jumble)
+	nil, nil, nil, nil, nil, 11, 31, 55, 51, ethereal.jumble)
 
 add_biome("jumble_ocean", nil, "default:sand", 1, "default:sand", 2,
-	nil, nil, nil, nil, nil, -192, 1, 25, 50, ethereal.jumble)
+	nil, nil, nil, nil, nil, -192, 3, 44, 50, ethereal.jumble)
 
 if minetest.registered_nodes["default:dirt_with_rainforest_litter"] then
 	add_biome("junglee", nil, "default:dirt_with_rainforest_litter", 1, "default:dirt", 3,
-		nil, nil, nil, nil, nil, 1, 71, 30, 60, ethereal.junglee)
+		nil, nil, nil, nil, nil, 8, 61, 40, 62, ethereal.junglee)
 else
 	add_biome("junglee", nil, "ethereal:jungle_dirt", 1, "default:dirt", 3,
-		nil, nil, nil, nil, nil, 1, 71, 30, 60, ethereal.junglee)
+		nil, nil, nil, nil, nil, 8, 61, 40, 59, ethereal.junglee)
 end
 
 add_biome("junglee_ocean", nil, "default:sand", 1, "default:sand", 2,
-	nil, nil, nil, nil, nil, -192, 1, 30, 60, ethereal.junglee)
+	nil, nil, nil, nil, nil, -192, 2, 41, 59, ethereal.junglee)
 
 add_biome("grove", nil, "ethereal:grove_dirt", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 3, 23, 45, 35, ethereal.grove)
+	nil, nil, nil, nil, nil, 25, 38, 44, 36, ethereal.grove)
 
 add_biome("grove_ocean", nil, "default:sand", 1, "default:sand", 2,
-	nil, nil, nil, nil, nil, -192, 2, 45, 35, ethereal.grove)
+	nil, nil, nil, nil, nil, -192, 2, 42, 34, ethereal.grove)
 
 add_biome("mushroom", nil, "ethereal:mushroom_dirt", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 3, 50, 45, 55, ethereal.mushroom)
+	nil, nil, nil, nil, nil, 15, 30, 48, 71, ethereal.mushroom)
 
 add_biome("mushroom_ocean", nil, "default:sand", 1, "default:sand", 2,
-	nil, nil, nil, nil, nil, -192, 2, 45, 55, ethereal.mushroom)
+	nil, nil, nil, nil, nil, -192, 2, 44, 73, ethereal.mushroom)
 
 add_biome("sandstone", nil, "default:sandstone", 1, "default:sandstone", 1,
-	"default:sandstone", nil, nil, nil, nil, 3, 23, 50, 20, ethereal.sandstone)
+	"default:sandstone", nil, nil, nil, nil, 4, 23, 21, 20, ethereal.sandstone)
 
 add_biome("sandstone_ocean", nil, "default:sand", 1, "default:sand", 2,
-	nil, nil, nil, nil, nil, -192, 2, 50, 20, ethereal.sandstone)
-
-add_biome("quicksand", nil, "ethereal:quicksand2", 3, "default:gravel", 1,
-	nil, nil, nil, nil, nil, 1, 1, 50, 38, ethereal.quicksand)
+	nil, nil, nil, nil, nil, -192, 2, 20, 20, ethereal.sandstone)
 
 add_biome("plains", nil, "ethereal:dry_dirt", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 3, 25, 65, 25, ethereal.plains)
+	nil, nil, nil, nil, nil, 3, 35, 65, 25, ethereal.plains)
 
 add_biome("plains_ocean", nil, "default:sand", 1, "default:sand", 2,
 	nil, nil, nil, nil, nil, -192, 2, 55, 25, ethereal.plains)
 
 add_biome("savannah", nil, "default:dirt_with_dry_grass", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 3, 50, 55, 25, ethereal.savannah)
+	nil, nil, nil, nil, nil, 15, 40, 65, 15, ethereal.savannah)
 
 add_biome("savannah_ocean", nil, "default:sand", 1, "default:sand", 2,
-	nil, nil, nil, nil, nil, -192, 1, 55, 25, ethereal.savannah)
+	nil, nil, nil, nil, nil, -192, 2, 55, 25, ethereal.savannah)
 
 add_biome("fiery", nil, "ethereal:fiery_dirt", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 5, 20, 75, 10, ethereal.fiery)
+	nil, nil, nil, nil, nil, 2, 4, 85, 15, ethereal.fiery)
 
 add_biome("fiery_ocean", nil, "default:sand", 1, "default:sand", 2,
-	nil, nil, nil, nil, nil, -192, 4, 75, 10, ethereal.fiery)
+	nil, nil, nil, nil, nil, -192, 3, 75, 10, ethereal.fiery)
 
 add_biome("sandclay", nil, "default:sand", 3, "default:clay", 2,
-	nil, nil, nil, nil, nil, 1, 11, 65, 2, ethereal.sandclay)
+	nil, nil, nil, nil, nil, 1, 6, 65, 2, ethereal.sandclay)
 
 add_biome("swamp", nil, "default:dirt_with_grass", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 1, 7, 80, 90, ethereal.swamp)
+	nil, nil, nil, nil, nil, 1, 7, 80, 80, ethereal.swamp)
 
 add_biome("swamp_ocean", nil, "default:sand", 2, "default:clay", 2,
-	nil, nil, nil, nil, nil, -192, 1, 80, 90, ethereal.swamp)
+	nil, nil, nil, nil, nil, -192, 2, 80, 80, ethereal.swamp)
 
 --= schematic decorations
 
@@ -243,19 +367,19 @@ end
 
 -- redwood tree
 --add_schem({"bakedclay:orange"}, 0.0025, {"mesa"}, 1, 100, path .. "redwood.mts", ethereal.mesa)
-add_schem({"default:dirt_with_dry_grass"}, 0.0025, {"mesa"}, 1, 100, path .. "redwood.mts", ethereal.mesa)
+add_schem({"default:dirt_with_dry_grass"}, 0.0025, {"mesa"}, 13, 75, path .. "redwood.mts", ethereal.mesa)
 
 -- banana tree
-add_schem({"ethereal:grove_dirt"}, 0.015, {"grove"}, 1, 100, ethereal.bananatree, ethereal.grove)
+add_schem({"ethereal:grove_dirt"}, 0.01, {"grove"}, 17, 42, ethereal.bananatree, ethereal.grove)
 
 -- healing tree
-add_schem({"default:dirt_with_snow"}, 0.01, {"alpine"}, 120, 140, path .. "yellowtree.mts", ethereal.alpine)
+add_schem({"default:dirt_with_snow"}, 0.01, {"alpine"}, 190, 250, path .. "yellowtree.mts", ethereal.alpine)
 
 -- crystal frost tree
-add_schem({"ethereal:crystal_dirt"}, 0.01, {"frost"}, 1, 100, path .. "frosttrees.mts", ethereal.frost)
+add_schem({"ethereal:crystal_dirt"}, 0.01, {"frost"}, 3, 200, path .. "frosttrees.mts", ethereal.frost)
 
 -- giant mushroom
-add_schem({"ethereal:mushroom_dirt"}, 0.02, {"mushroom"}, 1, 100, path .. "mushroomone.mts", ethereal.mushroom)
+add_schem({"ethereal:mushroom_dirt"}, 0.02, {"mushroom"}, 3, 100, path .. "mushroomone.mts", ethereal.mushroom)
 
 -- small lava crater
 add_schem({"ethereal:fiery_dirt"}, 0.01, {"fiery"}, 1, 100, path .. "volcanom.mts", ethereal.fiery)
@@ -264,33 +388,33 @@ add_schem({"ethereal:fiery_dirt"}, 0.01, {"fiery"}, 1, 100, path .. "volcanom.mt
 add_schem({"ethereal:fiery_dirt"}, 0.01, {"fiery"}, 1, 100, path .. "volcanol.mts", ethereal.fiery)
 
 -- default jungle tree
-add_schem({"ethereal:jungle_dirt", "default:dirt_with_rainforest_litter"}, 0.08, {"junglee"}, 1, 100, dpath .. "jungle_tree.mts", ethereal.junglee)
+add_schem({"ethereal:jungle_dirt", "default:dirt_with_rainforest_litter"}, 0.03, {"junglee"}, 6, 66, dpath .. "jungle_tree.mts", ethereal.junglee)
 
 -- willow tree
-add_schem({"ethereal:gray_dirt"}, 0.02, {"grayness"}, 1, 100, path .. "willow.mts", ethereal.grayness)
+add_schem({"default:dirt_with_grass"}, 0.015, {"grassytwo"}, 13, 44, path .. "willow.mts", ethereal.grayness)
 
 -- pine tree (default for lower elevation and ethereal for higher)
-add_schem({"ethereal:cold_dirt"}, 0.025, {"snowy"}, 10, 40, dpath .. "pine_tree.mts", ethereal.snowy)
-add_schem({"default:dirt_with_snow"}, 0.025, {"alpine"}, 40, 140, path .. "pinetree.mts", ethereal.alpine)
+add_schem({"ethereal:cold_dirt"}, 0.025, {"snowy"}, 140, 190, dpath .. "pine_tree.mts", ethereal.snowy)
+add_schem({"default:dirt_with_snow"}, 0.025, {"alpine"}, 160, 200, path .. "pinetree.mts", ethereal.alpine)
 
 -- default apple tree
-add_schem({"default:dirt_with_grass"}, 0.02, {"jumble"}, 1, 100, dpath .. "apple_tree.mts", ethereal.grassy)
-add_schem({"default:dirt_with_grass"}, 0.03, {"grassy"}, 1, 100, dpath .. "apple_tree.mts", ethereal.grassy)
+add_schem({"default:dirt_with_grass"}, 0.02, {"jumble"}, 13, 50, dpath .. "apple_tree.mts", ethereal.grassy)
+add_schem({"default:dirt_with_grass"}, 0.03, {"grassy"}, 16, 40, dpath .. "apple_tree.mts", ethereal.grassy)
 
 -- big old tree
-add_schem({"default:dirt_with_grass"}, 0.001, {"jumble"}, 1, 100, path .. "bigtree.mts", ethereal.jumble)
+add_schem({"default:dirt_with_grass"}, 0.001, {"grassytwo"}, 10, 69, path .. "bigtree.mts", ethereal.jumble)
 
 -- aspen tree
-add_schem({"default:dirt_with_grass"}, 0.02, {"grassytwo"}, 1, 50, dpath .. "aspen_tree.mts", ethereal.jumble)
+add_schem({"default:dirt_with_grass"}, 0.02, {"grassytwo"}, 15, 40, dpath .. "aspen_tree.mts", ethereal.jumble)
 
 -- birch tree
-add_schem({"default:dirt_with_grass"}, 0.02, {"grassytwo"}, 50, 100, ethereal.birchtree, ethereal.grassytwo)
+add_schem({"default:dirt_with_grass"}, 0.02, {"grassytwo"}, 5, 47, ethereal.birchtree, ethereal.grassytwo)
 
 -- orange tree
-add_schem({"ethereal:prairie_dirt"}, 0.01, {"prairie"}, 1, 100, ethereal.orangetree, ethereal.prairie)
+add_schem({"ethereal:prairie_dirt"}, 0.01, {"prairie"}, 5, 45, ethereal.orangetree, ethereal.prairie)
 
 -- default acacia tree
-add_schem({"default:dirt_with_dry_grass"}, 0.004, {"savannah"}, 1, 100, dpath .. "acacia_tree.mts", ethereal.savannah)
+add_schem({"default:dirt_with_dry_grass"}, 0.004, {"savannah"}, 4, 38, dpath .. "acacia_tree.mts", ethereal.savannah)
 
 -- large cactus (by Paramat)
 if ethereal.desert == 1 then
@@ -308,7 +432,7 @@ minetest.register_decoration({
 	},
 	biomes = {"desert"},
 	y_min = 5,
-	y_max = 31000,
+	y_max = 150,
 	schematic = dpath.."large_cactus.mts",
 	flags = "place_center_x", --, place_center_z",
 	rotation = "random",
@@ -325,13 +449,13 @@ add_schem({"default:sand"}, 0.0025, {"grove_ocean"}, 1, 1, path .. "palmtree.mts
 add_schem({"default:sand"}, 0.0025, {"grassy_ocean"}, 1, 1, path .. "palmtree.mts", ethereal.grassy)
 
 -- bamboo tree
-add_schem({"ethereal:bamboo_dirt"}, 0.025, {"bamboo"}, 1, 100, ethereal.bambootree, ethereal.bamboo)
+add_schem({"ethereal:bamboo_dirt"}, 0.025, {"bamboo"}, 20, 65, ethereal.bambootree, ethereal.bamboo)
 
 -- bush
-add_schem({"ethereal:bamboo_dirt"}, 0.08, {"bamboo"}, 1, 100, ethereal.bush, ethereal.bamboo)
+add_schem({"ethereal:bamboo_dirt"}, 0.04, {"bamboo"}, 2, 70, ethereal.bush, ethereal.bamboo)
 
 -- vine tree
-add_schem({"default:dirt_with_grass"}, 0.02, {"swamp"}, 1, 100, path .. "vinetree.mts", ethereal.swamp)
+add_schem({"default:dirt_with_grass"}, 0.01, {"swamp"}, 5, 56, path .. "vinetree.mts", ethereal.swamp)
 
 -- bush
 minetest.register_decoration({
@@ -348,7 +472,7 @@ minetest.register_decoration({
 	},
 	biomes = {"grassy", "grassytwo", "jumble"},
 	y_min = 1,
-	y_max = 31000,
+	y_max = 140,
 	schematic = dpath .. "/bush.mts",
 	flags = "place_center_x, place_center_z",
 })
@@ -367,8 +491,8 @@ minetest.register_decoration({
 		persist = 0.7,
 	},
 	biomes = {"savannah", "mesa"},
-	y_min = 1,
-	y_max = 31000,
+	y_min = 2,
+	y_max = 42,
 	schematic = dpath .. "/acacia_bush.mts",
 	flags = "place_center_x, place_center_z",
 })
@@ -405,9 +529,9 @@ add_node({"default:sandstone"}, 0.015, {"sandstone"}, 1, 100, {"default:dry_shru
 add_node({"bakedclay:red", "bakedclay:orange"}, 0.015, {"mesa"}, 1, 100, {"default:dry_shrub"}, nil, nil, nil, ethereal.mesa)
 
 -- dry grass
-add_node({"default:dirt_with_dry_grass"}, 0.25, {"savannah"}, 1, 100, {"default:dry_grass_2",
+add_node({"default:dirt_with_dry_grass"}, 0.045, {"savannah"}, 1, 100, {"default:dry_grass_2",
 	"default:dry_grass_3", "default:dry_grass_4", "default:dry_grass_5"}, nil, nil, nil, ethereal.savannah)
-add_node({"default:dirt_with_dry_grass"}, 0.10, {"mesa"}, 1, 100, {"default:dry_grass_2",
+add_node({"default:dirt_with_dry_grass"}, 0.050, {"mesa"}, 1, 100, {"default:dry_grass_2",
 	"default:dry_grass_3", "default:dry_grass_4", "default:dry_grass_5"}, nil, nil, nil, ethereal.mesa)
 
 -- flowers & strawberry
@@ -470,8 +594,8 @@ minetest.register_decoration({
 		persist = 0.66
 	},
 	biomes = {row[1]},
-	y_min = 1,
-	y_max = 120,
+	y_min = 3,
+	y_max = 145,
 	decoration = {"flowers:mushroom_brown", "flowers:mushroom_red"},
 })
 end
@@ -480,48 +604,48 @@ end
 
 -- jungle grass
 add_node({"ethereal:jungle_dirt", "default:dirt_with_rainforest_litter"}, 0.10, {"junglee"}, 1, 100, {"default:junglegrass"}, nil, nil, nil, ethereal.junglee)
-add_node({"default:dirt_with_grass"}, 0.15, {"jumble"}, 1, 100, {"default:junglegrass"}, nil, nil, nil, ethereal.jumble)
-add_node({"default:dirt_with_grass"}, 0.25, {"swamp"}, 1, 100, {"default:junglegrass"}, nil, nil, nil, ethereal.swamp)
+add_node({"default:dirt_with_grass"}, 0.015, {"jumble"}, 2, 48, {"default:junglegrass"}, nil, nil, nil, ethereal.jumble)
+add_node({"default:dirt_with_grass"}, 0.025, {"swamp"}, 1, 36, {"default:junglegrass"}, nil, nil, nil, ethereal.swamp)
 
 -- grass
-add_node({"default:dirt_with_grass"}, 0.35, {"grassy"}, 1, 100, {"default:grass_2", "default:grass_3",
+add_node({"default:dirt_with_grass"}, 0.025, {"grassy"}, 1, 156, {"default:grass_2", "default:grass_3",
 	"default:grass_4", "default:grass_5"}, nil, nil, nil, ethereal.grassy)
-add_node({"default:dirt_with_grass"}, 0.35, {"grassytwo"}, 1, 100, {"default:grass_2", "default:grass_3",
+add_node({"default:dirt_with_grass"}, 0.025, {"grassytwo"}, 2, 165, {"default:grass_2", "default:grass_3",
 	"default:grass_4", "default:grass_5"}, nil, nil, nil, ethereal.grassytwo)
-add_node({"default:dirt_with_grass"}, 0.35, {"jumble"}, 1, 100, {"default:grass_2", "default:grass_3",
+add_node({"default:dirt_with_grass"}, 0.025, {"jumble"}, 1, 148, {"default:grass_2", "default:grass_3",
 	"default:grass_4", "default:grass_5"}, nil, nil, nil, ethereal.jumble)
-add_node({"ethereal:jungle_dirt", "default:dirt_with_rainforest_litter"}, 0.35, {"junglee"}, 1, 100, {"default:grass_2", "default:grass_3",
+add_node({"ethereal:jungle_dirt", "default:dirt_with_rainforest_litter"}, 0.035, {"junglee"}, 1, 173, {"default:grass_2", "default:grass_3",
 	"default:grass_4", "default:grass_5"}, nil, nil, nil, ethereal.junglee)
-add_node({"ethereal:prairie_dirt"}, 0.35, {"prairie"}, 1, 100, {"default:grass_2", "default:grass_3",
+add_node({"ethereal:prairie_dirt"}, 0.025, {"prairie"}, 1, 162, {"default:grass_2", "default:grass_3",
 	"default:grass_4", "default:grass_5"}, nil, nil, nil, ethereal.prairie)
-add_node({"ethereal:grove_dirt"}, 0.35, {"grove"}, 1, 100, {"default:grass_2", "default:grass_3",
+add_node({"ethereal:grove_dirt"}, 0.025, {"grove"}, 1, 149, {"default:grass_2", "default:grass_3",
 	"default:grass_4", "default:grass_5"}, nil, nil, nil, ethereal.grove)
-add_node({"ethereal:bamboo_dirt"}, 0.35, {"bamboo"}, 1, 100, {"default:grass_2", "default:grass_3",
+add_node({"ethereal:bamboo_dirt"}, 0.025, {"bamboo"}, 1, 151, {"default:grass_2", "default:grass_3",
 	"default:grass_4", "default:grass_5"}, nil, nil, nil, ethereal.bamboo)
-add_node({"default:dirt_with_grass"}, 0.35, {"clearing", "swamp"}, 1, 100, {"default:grass_3",
+add_node({"default:dirt_with_grass"}, 0.025, {"clearing", "swamp"}, 1, 156, {"default:grass_3",
 	"default:grass_4"}, nil, nil, nil, 1)
 
 -- grass on sand
-add_node({"default:sand"}, 0.25, {"sandclay"}, 3, 4, {"default:grass_2", "default:grass_3"}, nil, nil, nil, ethereal.sandclay)
+add_node({"default:sand"}, 0.025, {"sandclay"}, 2, 4, {"default:grass_2", "default:grass_3"}, nil, nil, nil, ethereal.sandclay)
 
 -- ferns
-add_node({"ethereal:grove_dirt"}, 0.2, {"grove"}, 1, 100, {"ethereal:fern"}, nil, nil, nil, ethereal.grove)
-add_node({"default:dirt_with_grass"}, 0.1, {"swamp"}, 1, 100, {"ethereal:fern"}, nil, nil, nil, ethereal.swamp)
+add_node({"ethereal:grove_dirt"}, 0.02, {"grove"}, 1, 170, {"ethereal:fern"}, nil, nil, nil, ethereal.grove)
+add_node({"default:dirt_with_grass"}, 0.01, {"swamp"}, 1, 156, {"ethereal:fern"}, nil, nil, nil, ethereal.swamp)
 
 -- snow
 add_node({"ethereal:cold_dirt"}, 0.8, {"snowy"}, 4, 40, {"default:snow"}, nil, nil, nil, ethereal.snowy)
-add_node({"default:dirt_with_snow"}, 0.8, {"alpine"}, 40, 140, {"default:snow"}, nil, nil, nil, ethereal.alpine)
+add_node({"default:dirt_with_snow"}, 0.8, {"alpine"}, 165, 250, {"default:snow"}, nil, nil, nil, ethereal.alpine)
 
 -- wild onion
-add_node({"default:dirt_with_grass"}, 0.25, {"grassy"}, 1, 100, {"ethereal:onion_4"}, nil, nil, nil, ethereal.grassy)
-add_node({"default:dirt_with_grass"}, 0.25, {"grassytwo"}, 1, 100, {"ethereal:onion_4"}, nil, nil, nil, ethereal.grassytwo)
-add_node({"default:dirt_with_grass"}, 0.25, {"jumble"}, 1, 100, {"ethereal:onion_4"}, nil, nil, nil, ethereal.jumble)
-add_node({"ethereal:prairie_dirt"}, 0.25, {"prairie"}, 1, 100, {"ethereal:onion_4"}, nil, nil, nil, ethereal.prairie)
+add_node({"default:dirt_with_grass"}, 0.025, {"grassy"}, 1, 100, {"ethereal:onion_4"}, nil, nil, nil, ethereal.grassy)
+add_node({"default:dirt_with_grass"}, 0.025, {"grassytwo"}, 1, 100, {"ethereal:onion_4"}, nil, nil, nil, ethereal.grassytwo)
+add_node({"default:dirt_with_grass"}, 0.025, {"jumble"}, 1, 100, {"ethereal:onion_4"}, nil, nil, nil, ethereal.jumble)
+add_node({"ethereal:prairie_dirt"}, 0.025, {"prairie"}, 1, 100, {"ethereal:onion_4"}, nil, nil, nil, ethereal.prairie)
 
 -- papyrus
-add_node({"default:dirt_with_grass"}, 0.1, {"grassy"}, 1, 1, {"default:papyrus"}, 4, "default:water_source", 1, ethereal.grassy)
-add_node({"ethereal:jungle_dirt", "default:dirt_with_rainforest_litter"}, 0.1, {"junglee"}, 1, 1, {"default:papyrus"}, 4, "default:water_source", 1, ethereal.junglee)
-add_node({"default:dirt_with_grass"}, 0.1, {"swamp"}, 1, 1, {"default:papyrus"}, 4, "default:water_source", 1, ethereal.swamp)
+add_node({"default:dirt_with_grass"}, 0.01, {"grassy"}, 1, 1, {"default:papyrus"}, 4, "default:water_source", 1, ethereal.grassy)
+add_node({"ethereal:jungle_dirt", "default:dirt_with_rainforest_litter"}, 0.01, {"junglee"}, 1, 1, {"default:papyrus"}, 4, "default:water_source", 1, ethereal.junglee)
+add_node({"default:dirt_with_grass"}, 0.20, {"swamp"}, 1, 1, {"default:papyrus"}, 4, "default:water_source", 1, ethereal.swamp)
 
 --= Farming Redo plants
 
@@ -549,18 +673,18 @@ add_node({"ethereal:prairie_dirt"}, 0.05, {"prairie"}, 1, 100, {"farming:carrot_
 	"farming:pea_5", "farming:beetroot_5"}, nil, nil, nil, ethereal.prairie)
 
 -- melon and pumpkin
-add_node({"ethereal:jungle_dirt", "default:dirt_with_rainforest_litter"}, 0.015, {"junglee"}, 1, 1, {"farming:melon_8", "farming:pumpkin_8"}, nil, "default:water_source", 1, ethereal.junglee)
-add_node({"default:dirt_with_grass"}, 0.015, {"grassy"}, 1, 1, {"farming:melon_8", "farming:pumpkin_8"}, nil, "default:water_source", 1, ethereal.grassy)
-add_node({"default:dirt_with_grass"}, 0.015, {"grassytwo"}, 1, 1, {"farming:melon_8", "farming:pumpkin_8"}, nil, "default:water_source", 1, ethereal.grassytwo)
-add_node({"default:dirt_with_grass"}, 0.015, {"jumble"}, 1, 1, {"farming:melon_8", "farming:pumpkin_8"}, nil, "default:water_source", 1, ethereal.jumble)
+add_node({"ethereal:jungle_dirt", "default:dirt_with_rainforest_litter"}, 0.015, {"junglee"}, 1, 100, {"farming:melon_8", "farming:pumpkin_8"}, nil, "default:water_source", 1, ethereal.junglee)
+add_node({"default:dirt_with_grass"}, 0.015, {"grassy"}, 1, 100, {"farming:melon_8", "farming:pumpkin_8"}, nil, "default:water_source", 1, ethereal.grassy)
+add_node({"default:dirt_with_grass"}, 0.015, {"grassytwo"}, 1, 100, {"farming:melon_8", "farming:pumpkin_8"}, nil, "default:water_source", 1, ethereal.grassytwo)
+add_node({"default:dirt_with_grass"}, 0.015, {"jumble"}, 1, 100, {"farming:melon_8", "farming:pumpkin_8"}, nil, "default:water_source", 1, ethereal.jumble)
 
 -- green beans
-add_node({"default:dirt_with_grass"}, 0.035, {"grassytwo"}, 1, 100, {"farming:beanbush"}, nil, nil, nil, ethereal.grassytwo)
+add_node({"default:dirt_with_grass"}, 0.035, {"grassytwo"}, 7, 85, {"farming:beanbush"}, nil, nil, nil, ethereal.grassytwo)
 
 -- grape bushel
-add_node({"default:dirt_with_grass"}, 0.025, {"grassytwo"}, 1, 100, {"farming:grapebush"}, nil, nil, nil, ethereal.grassytwo)
-add_node({"default:dirt_with_grass"}, 0.025, {"grassy"}, 1, 100, {"farming:grapebush"}, nil, nil, nil, ethereal.grassy)
-add_node({"ethereal:prairie_dirt"}, 0.025, {"prairie"}, 1, 100, {"farming:grapebush"}, nil, nil, nil, ethereal.prairie)
+add_node({"default:dirt_with_grass"}, 0.025, {"grassytwo"}, 12, 66, {"farming:grapebush"}, nil, nil, nil, ethereal.grassytwo)
+add_node({"default:dirt_with_grass"}, 0.025, {"grassy"}, 12, 66, {"farming:grapebush"}, nil, nil, nil, ethereal.grassy)
+add_node({"ethereal:prairie_dirt"}, 0.025, {"prairie"}, 12, 66, {"farming:grapebush"}, nil, nil, nil, ethereal.prairie)
 
 minetest.register_decoration({
 	deco_type = "simple",

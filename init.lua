@@ -108,8 +108,5 @@ else -- or return to where it came from
 	minetest.register_alias("ethereal:bonemeal", "default:dirt")
 end
 
-if minetest.get_modpath("xanadu") then
-	dofile(path .. "/plantpack.lua")
-end
 
-print (S("[MOD] Ethereal loaded"))
+print ("[MOD]: Ethereal loaded")

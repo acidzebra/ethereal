@@ -29,6 +29,19 @@ minetest.register_decoration({
 	},
 })
 
+
+minetest.register_decoration({
+        deco_type = "simple",
+        place_on = {"default:desert_stone"},
+        sidelen = 16,
+        fill_ratio = 0.004,
+        biomes = {"desert", "sandstone"},
+        decoration = {
+                "xanadu:desert_kangaroo", "xanadu:desert_brittle",
+                "xanadu:desert_ocotillo", "xanadu:desert_whitesage"
+        },
+})
+
 --=  Prairie Biome
 
 -- Grass

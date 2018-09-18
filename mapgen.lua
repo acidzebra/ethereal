@@ -26,8 +26,8 @@ local add_biome = function(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p)
 
 	if p ~= 1 then return end
 	math.randomseed(os.clock()*100000000000)
-	zminblend =  math.random(-20500, -20000)
-	zmaxblend = math.random(20000, 20500)
+	local zminblend =  math.random(-20500, -20000)
+	local zmaxblend = math.random(20000, 20500)
 	minetest.register_biome({
 		name = a,
 		node_dust = b,
@@ -376,7 +376,7 @@ add_schem({"default:dirt_with_dry_grass"}, 0.0025, {"mesa"}, 13, 75, path .. "re
 add_schem({"ethereal:grove_dirt"}, 0.01, {"grove"}, 12, 42, ethereal.bananatree, ethereal.grove)
 
 -- healing tree
-add_schem({"default:dirt_with_snow"}, 0.01, {"alpine"}, 190, 250, path .. "yellowtree.mts", ethereal.alpine)
+add_schem({"default:dirt_with_snow"}, 0.005, {"alpine"}, 190, 250, path .. "yellowtree.mts", ethereal.alpine)
 
 -- crystal frost tree
 add_schem({"ethereal:crystal_dirt"}, 0.01, {"frost"}, 3, 200, path .. "frosttrees.mts", ethereal.frost)

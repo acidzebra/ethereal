@@ -160,9 +160,10 @@ add_biome("mesa", nil, "default:dirt_with_dry_grass", 1, "bakedclay:orange", 15,
 add_biome("mesa_ocean", nil, "default:sand", 1, "default:sand", 2,
 	nil, nil, nil, nil, nil, -192, 3, 55, 27, ethereal.mesa)
 
-add_biome("alpine", nil, "default:dirt_with_snow", 1, "default:dirt", 2,
+add_biome("alpine", "default:snow", "default:dirt_with_snow", 1, "default:dirt", 2,
 	nil, nil, nil, nil, nil, 140, 250, 8, 30, ethereal.alpine)
 
+	
 --add_biome("snowy", nil, "ethereal:cold_dirt", 1, "default:dirt", 2,
 --	nil, nil, nil, nil, nil, 135, 160, 10, 25, ethereal.snowy)
 minetest.register_biome({
@@ -259,7 +260,7 @@ add_biome("grassy_ocean", nil, "defaut:sand", 2, "default:gravel", 1,
 	nil, nil, nil, nil, nil, -31000, 3, 13, 22, ethereal.grassy)
 
 add_biome("caves", nil, "default:desert_stone", 3, "air", 8,
-	nil, nil, nil, nil, nil, 1, 171, 15, 15, ethereal.caves)
+	nil, nil, nil, nil, nil, 67, 82, 15, 15, ethereal.caves)
 
 add_biome("grayness", nil, "ethereal:gray_dirt", 1, "default:dirt", 3,
 	nil, nil, nil, nil, nil, 1, 3, 46, 31, ethereal.grayness)
@@ -273,13 +274,13 @@ else
 end
 
 add_biome("grassytwo", nil, "default:dirt_with_grass", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 2, 131, 45, 25, ethereal.grassytwo)
+	nil, nil, nil, nil, nil, 3, 97, 45, 25, ethereal.grassytwo)
 
 add_biome("grassytwo_ocean", nil, "default:sand", 1, "default:sand", 2,
-	nil, nil, nil, nil, nil, -192, 2, 45, 15, ethereal.grassytwo)
+	nil, nil, nil, nil, nil, -192, 3, 45, 15, ethereal.grassytwo)
 
 add_biome("prairie", nil, "ethereal:prairie_dirt", 1, "default:dirt", 3,
-	nil, nil, nil, nil, nil, 14, 56, 63, 22, ethereal.prairie)
+	nil, nil, nil, nil, nil, 14, 46, 63, 22, ethereal.prairie)
 
 add_biome("prairie_ocean", nil, "default:sand", 1, "default:sand", 2,
 	nil, nil, nil, nil, nil, -192, 2, 58, 22, ethereal.prairie)
@@ -383,6 +384,9 @@ add_schem({"ethereal:mushroom_dirt"}, 0.02, {"mushroom"}, 3, 100, path .. "mushr
 
 -- small lava crater
 add_schem({"ethereal:fiery_dirt"}, 0.01, {"fiery"}, 1, 100, path .. "volcanom.mts", ethereal.fiery)
+--
+--TESTING lava with caves
+add_schem({"ethereal:fiery_dirt"}, 0.01, {"caves"}, 1, 100, path .. "volcanom.mts", ethereal.caves)
 
 -- large lava crater
 add_schem({"ethereal:fiery_dirt"}, 0.01, {"fiery"}, 1, 100, path .. "volcanol.mts", ethereal.fiery)
@@ -551,12 +555,12 @@ add_node({"ethereal:prairie_dirt"}, 0.035, {"prairie"}, 1, 100, {"flowers:dandel
 add_node({"ethereal:crystal_dirt"}, 0.02, {"frost"}, 1, 100, {"ethereal:crystal_spike",
 	"ethereal:crystalgrass"}, nil, nil, nil, ethereal.frost)
 
--- red shrub
+-- red shrub TESTING
 add_node({"ethereal:fiery_dirt"}, 0.10, {"fiery"}, 1, 100, {"ethereal:dry_shrub"}, nil, nil, nil, ethereal.fiery)
-
--- fire flower
---add_node({"ethereal:fiery_dirt"}, 0.02, {"fiery"}, 1, 100, {"ethereal:fire_flower"}, nil, nil, nil, ethereal.fiery)
-
+add_node({"ethereal:fiery_dirt"}, 0.10, {"caves"}, 1, 100, {"ethereal:dry_shrub"}, nil, nil, nil, ethereal.caves)
+-- fire flower TESTING
+add_node({"ethereal:fiery_dirt"}, 0.02, {"fiery"}, 1, 100, {"ethereal:fire_flower"}, nil, nil, nil, ethereal.fiery)
+add_node({"ethereal:fiery_dirt"}, 0.10, {"caves"}, 1, 100, {"ethereal:fire_flower"}, nil, nil, nil, ethereal.caves)
 -- snowy grass
 add_node({"ethereal:gray_dirt"}, 0.05, {"grayness"}, 1, 100, {"ethereal:snowygrass"}, nil, nil, nil, ethereal.grayness)
 add_node({"ethereal:cold_dirt"}, 0.05, {"snowy"}, 1, 100, {"ethereal:snowygrass"}, nil, nil, nil, ethereal.snowy)

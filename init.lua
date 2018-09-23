@@ -36,11 +36,11 @@ ethereal.grove     = 1 -- Banana groves and ferns
 ethereal.mushroom  = 1 -- Purple grass with giant mushrooms
 ethereal.sandstone = 1 -- Sandstone with smaller cactus
 ethereal.quicksand = 1 -- Quicksand banks
-ethereal.plains    = 1 -- Dry dirt with scorched trees
+ethereal.plains    = 0 -- Dry dirt with scorched trees
 ethereal.savannah  = 1 -- Dry yellow grass with acacia tree's
-ethereal.fiery     = 1 -- Red grass with lava craters
+ethereal.fiery     = 0 -- Red grass with lava craters
 ethereal.sandclay  = 1 -- Sand areas with clay underneath
-ethereal.swamp     = 1 -- Swamp areas with vines on tree's, mushrooms, lilly's and clay sand
+ethereal.swamp     = 0 -- Swamp areas with vines on tree's, mushrooms, lilly's and clay sand
 ethereal.sealife   = 1 -- Enable coral and seaweed
 ethereal.reefs     = 1 -- Enable new 0.4.15 coral reefs in default
 

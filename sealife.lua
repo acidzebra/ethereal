@@ -4,8 +4,9 @@ local S = ethereal.intllib
 -- Seaweed
 minetest.register_node("ethereal:seaweed", {
 	description = S("Seaweed"),
-	drawtype = "plantlike",
-	tiles = {"seaweed.png"},
+	drawtype = "plantlike_rooted",
+	tiles = {"default_sand.png"},
+    special_tiles = {{name = "seaweed.png", tileable_vertical = false}},
 	inventory_image = "seaweed.png",
 	wield_image = "seaweed.png",
 	paramtype = "light",
@@ -24,6 +25,14 @@ minetest.register_node("ethereal:seaweed", {
 		default.dig_up(pos, node, digger)
 	end,
 })
+
+
+-- drawtype = "plantlike_rooted",
+	-- waving = 1,
+	-- tiles = {"default_sand.png"},
+	-- special_tiles = {{name = "default_kelp_yellow.png", tileable_vertical = true}},
+	-- inventory_image = "default_kelp_yellow.png",
+	-- paramtype = "light",
 
 minetest.register_craft( {
 	type = "shapeless",
@@ -53,8 +62,9 @@ minetest.register_craft({
 -- Blue Coral
 minetest.register_node("ethereal:coral2", {
 	description = S("Blue Coral"),
-	drawtype = "plantlike",
-	tiles = {"coral2.png"},
+	drawtype = "plantlike_rooted",
+	tiles = {"default_sand.png"},
+    special_tiles = {{name = "coral2.png", tileable_vertical = false}},
 	inventory_image = "coral2.png",
 	wield_image = "coral2.png",
 	paramtype = "light",
@@ -76,8 +86,9 @@ minetest.register_craft( {
 -- Orange Coral
 minetest.register_node("ethereal:coral3", {
 	description = S("Orange Coral"),
-	drawtype = "plantlike",
-	tiles = {"coral3.png"},
+	drawtype = "plantlike_rooted",
+	tiles = {"default_sand.png"},
+    special_tiles = {{name = "coral3.png", tileable_vertical = false}},
 	inventory_image = "coral3.png",
 	wield_image = "coral3.png",
 	paramtype = "light",
@@ -99,8 +110,9 @@ minetest.register_craft( {
 -- Pink Coral
 minetest.register_node("ethereal:coral4", {
 	description = S("Pink Coral"),
-	drawtype = "plantlike",
-	tiles = {"coral4.png"},
+	drawtype = "plantlike_rooted",
+	tiles = {"default_sand.png"},
+    special_tiles = {{name = "coral4.png", tileable_vertical = false}},
 	inventory_image = "coral4.png",
 	wield_image = "coral4.png",
 	paramtype = "light",
@@ -122,8 +134,9 @@ minetest.register_craft( {
 -- Green Coral
 minetest.register_node("ethereal:coral5", {
 	description = S("Green Coral"),
-	drawtype = "plantlike",
-	tiles = {"coral5.png"},
+	drawtype = "plantlike_rooted",
+	tiles = {"default_sand.png"},
+    special_tiles = {{name = "coral5.png", tileable_vertical = false}},
 	inventory_image = "coral5.png",
 	wield_image = "coral5.png",
 	paramtype = "light",
@@ -175,33 +188,14 @@ minetest.register_abm({
 		and sel > 1 then
 
 			if minetest.get_node(pos).name == "default:water_source" then
-
-				minetest.swap_node(pos, {name = "ethereal:coral" .. sel})
+			pos.y = pos.y - 1
+			minetest.swap_node(pos, {name = "ethereal:coral" .. sel})
 			end
 
 			return
 		end
 
-		if nod == "ethereal:seaweed"
-		or sel == 1 then
 
-			local height = 0
-			local high = 14
-
-			while height < high
-			and minetest.get_node(pos).name == "ethereal:seaweed" do
-				height = height + 1
-				pos.y = pos.y + 1
-			end
-
-			if pos.y < 1
-			and height < high
-			and minetest.get_node(pos).name == "default:water_source" then
-
-				minetest.swap_node(pos, {name = "ethereal:seaweed"})
-			end
-
-		end
 
 	end,
 })
